@@ -108,8 +108,8 @@ def _install_hook_script(
 
         hook_file.write(before + TEMPLATE_START)
         for line in to_template.splitlines():
-            var = line.split()[0]
-            hook_file.write(f'{var} = {params[var]!r}\n')
+            var = line.split('=')[0]
+            hook_file.write(f'{var}={params[var]!r}\n')
         hook_file.write(TEMPLATE_END + after)
     make_executable(hook_path)
 
